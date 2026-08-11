@@ -38,23 +38,5 @@
     "turbo": "^2.0.0",
     "typescript": "^5.9.0",
     "vitest": "^3.0.0"
-  },
-  "dependencies": {
-    "@nestjs/common": "^11.1.29",
-    "@nestjs/core": "^11.1.29",
-    "@nestjs/platform-express": "^11.1.29",
-    "@nestjs/swagger": "^11.4.6",
-    "@node-rs/argon2": "^2.0.2",
-    "@prisma/client": "^6.0.0",
-    "helmet": "^8.3.0",
-    "nestjs-pino": "^4.6.1",
-    "next": "^16.3.0",
-    "pino-http": "^11.0.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2",
-    "tsx": "^4.23.12",
-    "zod": "^4.4.3"
   }
 }
