@@ -28,6 +28,9 @@
     "test:e2e:demo": "playwright test --config playwright.config.ts"
   },
   "devDependencies": {
+    "next": "^16.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "@playwright/test": "1.57.0",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
