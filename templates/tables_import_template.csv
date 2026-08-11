@@ -1,0 +1,2 @@
+row_action,branch_code,dining_area_code,dining_area_name,table_code,table_name,capacity,combinable_group,display_order,active,notes
+EXAMPLE_DO_NOT_IMPORT,MAIN,DEMO-AREA,Demo Area,DEMO-T01,Demo Table 1,4,,10,FALSE,Replace with site-survey table layout

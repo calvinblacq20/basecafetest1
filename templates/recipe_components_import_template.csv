@@ -1,0 +1,2 @@
+row_action,recipe_code,recipe_name,recipe_version,effective_from,output_item_code,output_variant_code,batch_output_inventory_item_code,yield_quantity,yield_unit,component_inventory_item_code,component_quantity,component_unit,waste_percent,source_location_code,modifier_effect_code,active,notes
+EXAMPLE_DO_NOT_IMPORT,DEMO-RECIPE-001,Demo Recipe,1,2026-07-24,DEMO-ITEM-001,DEMO-REG,,1,portion,DEMO-ING-001,0,g,0,KITCHEN,,FALSE,One row per recipe component; replace with owner-approved recipe

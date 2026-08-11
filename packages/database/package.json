@@ -1,0 +1,32 @@
+{
+  "name": "@base-cafe/database",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "generate": "prisma generate",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "migrate:reset": "prisma migrate reset",
+    "seed": "tsx prisma/seed.ts",
+    "seed:stage1": "tsx prisma/seed.ts && tsx prisma/stage1-acceptance-seed.ts",
+    "lint": "eslint src prisma --max-warnings=0",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "^2.0.0",
+    "@prisma/client": "^6.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.9.0"
+  }
+}

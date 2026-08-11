@@ -1,0 +1,2 @@
+row_action,branch_code,inventory_location_code,inventory_item_code,counted_quantity,unit,unit_cost_ghs,counted_at,counted_by_employee_code,approved_by_employee_code,source_reference,notes
+EXAMPLE_DO_NOT_IMPORT,MAIN,STORE,DEMO-ING-001,0,g,0.00,2026-07-24T00:00:00+00:00,DEMO-STAFF-001,,DEMO-OPENING-COUNT,Use a real physical count near go-live

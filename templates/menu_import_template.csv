@@ -1,0 +1,2 @@
+row_action,branch_code,menu_code,category_code,category_name,item_code,item_name,description,variant_code,variant_name,price_ghs,tax_class_code,production_station_codes,availability_schedule_code,track_inventory,recipe_code,allergen_codes,age_restricted,display_order,active,notes
+EXAMPLE_DO_NOT_IMPORT,MAIN,DEFAULT,DEMO-FOOD,Demo Food,DEMO-ITEM-001,Demo Item,Fictional example only,DEMO-REG,Regular,0.00,UNCONFIRMED,KITCHEN,ALL_OPEN_HOURS,TRUE,DEMO-RECIPE-001,UNCONFIRMED,FALSE,10,FALSE,Replace with owner-approved current menu data

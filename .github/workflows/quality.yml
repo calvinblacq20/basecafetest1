@@ -1,0 +1,128 @@
+name: Quality and release readiness
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.16.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm security:secrets
+      - run: pnpm security:dependencies
+      - run: pnpm build
+
+  fresh-migrations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: base_cafe_ci
+          POSTGRES_USER: base_cafe_ci
+          POSTGRES_PASSWORD: base_cafe_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U base_cafe_ci -d base_cafe_ci"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://base_cafe_ci:base_cafe_ci@localhost:5432/base_cafe_ci?schema=public
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.16.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @base-cafe/database generate
+      - run: pnpm --filter @base-cafe/database migrate:deploy
+      - name: Prove migration SQL is deterministic from an empty schema
+        run: pnpm --filter @base-cafe/database exec prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > fresh-schema.sql
+      - run: test -s fresh-schema.sql
+
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: [quality, fresh-migrations]
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: base_cafe_browser
+          POSTGRES_USER: base_cafe_browser
+          POSTGRES_PASSWORD: base_cafe_browser
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U base_cafe_browser -d base_cafe_browser"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://base_cafe_browser:base_cafe_browser@localhost:5432/base_cafe_browser?schema=public
+      BOOTSTRAP_ADMIN_EMAIL: stage1-ci@example.test
+      BOOTSTRAP_ADMIN_PASSWORD: Stage1-CI-Fictional-Only!
+      STAGE1_ACCEPTANCE_EMAIL: stage1-ci@example.test
+      STAGE1_ACCEPTANCE_PASSWORD: Stage1-CI-Fictional-Only!
+      ALLOW_STAGE1_ACCEPTANCE_FIXTURE: "true"
+      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://localhost:3001,http://localhost:3002
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.16.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @base-cafe/database generate
+      - run: pnpm --filter @base-cafe/database migrate:deploy
+      - run: pnpm stage1:seed
+      - name: Start API and wait for readiness
+        run: |
+          pnpm --filter @base-cafe/api dev > api.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            curl --fail --silent http://127.0.0.1:3100/api/v1/health/ready && exit 0
+            sleep 1
+          done
+          cat api.log
+          exit 1
+      - run: pnpm stage1:accept
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e:demo
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report
+          if-no-files-found: ignore

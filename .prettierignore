@@ -1,0 +1,8 @@
+.next
+.tmp
+.playwright-mcp
+node_modules
+pnpm-lock.yaml
+base-cafe-pos-codex-handoff
+design/concepts
+apps/*/public/menu

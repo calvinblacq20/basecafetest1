@@ -1,0 +1,51 @@
+services:
+  migrate:
+    build:
+      context: ..
+      dockerfile: deploy/api.Dockerfile
+    command: ["pnpm", "--filter", "@base-cafe/database", "migrate:deploy"]
+    env_file: .env.staging
+    restart: "no"
+
+  api:
+    build:
+      context: ..
+      dockerfile: deploy/api.Dockerfile
+    env_file: .env.staging
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    ports: ["3100:3100"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    restart: unless-stopped
+
+  pos:
+    build:
+      context: ..
+      dockerfile: deploy/web.Dockerfile
+      args:
+        APP_NAME: pos-web
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL}
+    ports: ["3000:3000"]
+    restart: unless-stopped
+
+  admin:
+    build:
+      context: ..
+      dockerfile: deploy/web.Dockerfile
+      args:
+        APP_NAME: admin-web
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL}
+    ports: ["3001:3000"]
+    restart: unless-stopped
+
+  kds:
+    build:
+      context: ..
+      dockerfile: deploy/web.Dockerfile
+      args:
+        APP_NAME: kds-web
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL}
+    ports: ["3002:3000"]
+    restart: unless-stopped

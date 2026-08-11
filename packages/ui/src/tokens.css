@@ -1,0 +1,79 @@
+:root {
+  color-scheme: light;
+  --bc-cocoa-950: #211a16;
+  --bc-cocoa-900: #2a211c;
+  --bc-cocoa-800: #3b302a;
+  --bc-ink: #211b18;
+  --bc-ink-soft: #5f5752;
+  --bc-canvas: #f7f5f2;
+  --bc-surface: #ffffff;
+  --bc-surface-soft: #fbfaf8;
+  --bc-border: #ded8d2;
+  --bc-border-strong: #c9c0b8;
+  --bc-accent: #d84a13;
+  --bc-accent-dark: #b93c0c;
+  --bc-accent-soft: #fff1eb;
+  --bc-sage: #4d8a42;
+  --bc-sage-soft: #edf5e9;
+  --bc-ochre: #c98912;
+  --bc-ochre-soft: #fff7e5;
+  --bc-danger: #bd3218;
+  --bc-radius-sm: 8px;
+  --bc-radius-md: 12px;
+  --bc-radius-lg: 16px;
+  --bc-shadow: 0 8px 24px rgb(52 38 29 / 8%);
+  --bc-font:
+    "Aptos", "Segoe UI Variable", "Segoe UI", "Inter", system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --bc-mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  --bc-speed: 160ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bc-canvas);
+  color: var(--bc-ink);
+  font-family: var(--bc-font);
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid rgb(216 74 19 / 25%);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--bc-accent-soft);
+  color: var(--bc-accent-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

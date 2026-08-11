@@ -1,0 +1,2 @@
+row_action,supplier_code,supplier_name,contact_person,phone,email,address,tin_or_reference,payment_terms,lead_time_days,active,notes
+EXAMPLE_DO_NOT_IMPORT,DEMO-SUP-001,Demo Supplier,,,,,,,0,FALSE,Replace with approved supplier details

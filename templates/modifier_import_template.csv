@@ -1,0 +1,2 @@
+row_action,group_code,group_name,selection_type,minimum_selections,maximum_selections,required,option_code,option_name,price_delta_ghs,tax_class_code,production_station_codes,recipe_effect_code,default_selected,display_order,active,applicable_item_codes,notes
+EXAMPLE_DO_NOT_IMPORT,DEMO-MOD-GRP,Demo options,MULTI,0,2,FALSE,DEMO-MOD-OPT,Demo option,0.00,INHERIT_ITEM,INHERIT_ITEM,,FALSE,10,FALSE,DEMO-ITEM-001,One row per modifier option; separate item codes with |

@@ -1,0 +1,20 @@
+{
+  "name": "@base-cafe/web-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint src tests --max-warnings=0",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@base-cafe/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vitest": "^3.0.0"
+  }
+}

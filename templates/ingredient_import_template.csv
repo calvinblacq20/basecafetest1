@@ -1,0 +1,2 @@
+row_action,branch_code,inventory_item_code,inventory_item_name,category,base_unit,purchase_unit,purchase_to_base_factor,cost_method,opening_unit_cost_ghs,reorder_level_base,negative_stock_policy,default_location_code,preferred_supplier_code,track_lot,track_expiry,active,notes
+EXAMPLE_DO_NOT_IMPORT,MAIN,DEMO-ING-001,Demo Ingredient,Demo,g,kg,1000,WEIGHTED_AVERAGE,0.00,0,WARN,STORE,,FALSE,FALSE,FALSE,Opening cost is per purchase unit unless implementation decision states otherwise; confirm during import design

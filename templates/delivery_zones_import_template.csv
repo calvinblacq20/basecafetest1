@@ -1,0 +1,2 @@
+row_action,branch_code,zone_code,zone_name,coverage_description,minimum_order_ghs,fee_type,fee_value_ghs,estimated_minutes,availability_schedule_code,cash_on_delivery_allowed,active,notes
+EXAMPLE_DO_NOT_IMPORT,MAIN,DEMO-ZONE,Demo Zone,"Fictional example; list hostels, landmarks or boundaries",0.00,FLAT,0.00,30,ALL_OPEN_HOURS,FALSE,FALSE,"Owner must approve zone, fee, minimum and COD policy"

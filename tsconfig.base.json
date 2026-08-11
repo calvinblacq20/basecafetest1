@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@base-cafe/contracts": ["packages/contracts/dist/index.d.ts"],
+      "@base-cafe/contracts/*": ["packages/contracts/dist/*.d.ts"],
+      "@base-cafe/database": ["packages/database/dist/src/index.d.ts"],
+      "@base-cafe/database/*": ["packages/database/dist/src/*.d.ts"],
+      "@base-cafe/domain": ["packages/domain/src/index.ts"],
+      "@base-cafe/domain/*": ["packages/domain/src/*"],
+      "@base-cafe/integrations": ["packages/integrations/src/index.ts"],
+      "@base-cafe/integrations/*": ["packages/integrations/src/*"],
+      "@base-cafe/ui": ["packages/ui/src/index.ts"],
+      "@base-cafe/ui/*": ["packages/ui/src/*"],
+      "@base-cafe/web-client": ["packages/web-client/src/index.ts"],
+      "@base-cafe/web-client/*": ["packages/web-client/src/*"]
+    }
+  }
+}

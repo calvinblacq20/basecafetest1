@@ -1,0 +1,2 @@
+row_action,employee_code,full_name,preferred_name,phone,email,role_codes,branch_codes,requires_cash_shift,requires_mfa,initial_login_delivery_method,active,employment_notes
+EXAMPLE_DO_NOT_IMPORT,DEMO-STAFF-001,Demo Staff User,Demo,,,CASHIER,MAIN,TRUE,FALSE,ADMIN_SETS_TEMPORARY,FALSE,Never put passwords or PINs in this CSV
